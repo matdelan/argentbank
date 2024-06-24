@@ -1,3 +1,6 @@
+# argentbank
+Project 13 - Dev front end React
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +71,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Init project:
+create react app : npx create-react-app argentbank
+npm install @reduxjs/toolkit react-redux
+//npm i react-router-dom
+
+
