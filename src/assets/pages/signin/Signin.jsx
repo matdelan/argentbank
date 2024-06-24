@@ -3,6 +3,7 @@ import './signin.css'
 export default function Signin () {
 
     return <>
+    <div class="body">
         <main class="main bg-dark">
             <section class="sign-in-content">
                 <i class="fa fa-user-circle sign-in-icon"></i>
@@ -25,5 +26,6 @@ export default function Signin () {
                 </form>
             </section>
         </main>
+        </div>
     </>
 }

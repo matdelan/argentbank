@@ -4,7 +4,7 @@ import logoArgentBank from '../../img/argentBankLogo.png'
 export default function header() {
 
     return <nav class="main-nav">
-        <a class="main-nav-logo" href="./index.html">
+        <a class="main-nav-logo" href="/">
         <img
             class="main-nav-logo-image"
             src={logoArgentBank}
