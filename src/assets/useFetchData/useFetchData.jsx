@@ -5,10 +5,13 @@ import {useState, useEffect} from 'react'
 * @param {sting} url - url of api to load
 * @returns { Object }
 */
-const useFetchData = (url) => {
+const useFetchData = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+  
+    const url = 'http://localhost:3001/user/login';
+    //const data = { email: 'tony@stark.com', password: 'password123' };
   
     useEffect(() => {
       const fetchData = async () => {
@@ -36,3 +39,21 @@ const useFetchData = (url) => {
   };
   
   export default useFetchData;
+
+  /*
+const url = 'https://api.example.com/resource';
+const data = { key1: 'value1', key2: 'value2' };
+
+fetch(url, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+  */
