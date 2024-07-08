@@ -75,6 +75,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Init project:
 create react app : npx create-react-app argentbank
 npm install @reduxjs/toolkit react-redux
-//npm i react-router-dom
+npm i react-router-dom
+npm install dotenv 
 
 

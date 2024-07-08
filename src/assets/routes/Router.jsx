@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import PageError from '../pages/pageerror/PageError'
 import Index from '../pages/index/Index'
 import Signin from '../pages/signin/Signin'
-import User from '../pages/user/User'
+import Profile from '../pages/profile/Profile'
 import './routes.css'
 import Layout from '../layout/Layout'
 
@@ -21,8 +21,8 @@ const router = createBrowserRouter([
         element: <Signin/>,
       },
       {
-        path: 'user',
-        element: <User/>,
+        path: 'profile',
+        element: <Profile/>,
       }
     ]
   }
