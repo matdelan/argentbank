@@ -4,7 +4,7 @@ const initialState = {
 }
 
 export const userReducer = (state = initialState, action)=> {
-    console.log(action.payload)
+    
     switch (action.type) {
         case 'STORE_USER_PROFILE':
             return {
@@ -12,7 +12,12 @@ export const userReducer = (state = initialState, action)=> {
                 firstname: action.payload.firstName,
                 lastname: action.payload.lastName,
             }
-            
+        case 'EDIT_USERNAME':
+            return {
+                ...state,
+                firstname: action.payload.firstName,
+                lastname: action.payload.lastName,
+            }
         default:
             return state;
     }

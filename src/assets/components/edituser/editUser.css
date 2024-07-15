@@ -1,0 +1,30 @@
+.edit-user{
+    display: flex;
+    justify-content: center;
+}
+
+.edit-user-form {
+
+}
+
+.edit-user-content{
+    display: flex;
+}
+
+.edit-user-firstname{
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-user-lastname{
+    display: flex;
+    flex-direction: column;
+}
+.edit-button-user{
+    border-color: #00bc77;
+    background-color: #fff;
+    color: #00bc77;
+    font-weight: bold;
+    padding: 10px;
+    width: 150px;
+}

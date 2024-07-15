@@ -18,9 +18,12 @@
     text-decoration: none;
     margin-right: 0.5rem;
   }
+  .main-nav-item i{
+    margin-right: 10px;
+  }
   
   .main-nav-item:hover {
-    text-decoration: underline;
+    cursor: pointer;
   }
   
   .main-nav-logo {

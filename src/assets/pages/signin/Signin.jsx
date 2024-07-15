@@ -7,7 +7,7 @@ import { loginSuccess } from '../../redux/actions/loginActions'
 
 export default function Signin () {
 
-    const REACT__LOGIN__BASE_URL='http://localhost:3001/api/v1/user/login'
+    const REACT_LOGIN_BASE_URL=`${process.env.REACT_APP_BASE_URL}user/login`
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -28,7 +28,7 @@ export default function Signin () {
         }
         setErrorMessage("")
         try {
-            const response = await fetch(REACT__LOGIN__BASE_URL, {
+            const response = await fetch(REACT_LOGIN_BASE_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,11 +48,12 @@ export default function Signin () {
                         setErrorMessage("Internal Server Error")
                         break
                     case 200:
-                        //console.log("login: " + userData.body.token)
                         dispatch(loginSuccess(userData.body.token))
                         navigate('/profile')
-                    default:
                         break
+                    default:
+                        setErrorMessage("An unknown error occurred");
+                        break;
                 }
             } 
         } catch (error) {
