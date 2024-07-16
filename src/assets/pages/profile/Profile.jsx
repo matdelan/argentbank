@@ -47,7 +47,6 @@ export default function Profile () {
                 } catch (error) {
                     console.error(error)
                 }
-                
         }
 
         if (token) {

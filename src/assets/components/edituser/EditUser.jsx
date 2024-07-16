@@ -18,13 +18,26 @@ export default function EditUser() {
     const EDIT_PROFILE_BASE_URL = `${process.env.REACT_APP_BASE_URL}user/profile`
     const [display, setDisplay] = useState(true)
 
+    console.log(firstName + lastName)
+    console.log('ini : ' + initialFirstName + initialLastName)
+    useEffect(() => {
+        setFirstName(initialFirstName);
+        setLastName(initialLastName);
+    }, [initialFirstName, initialLastName]);
+
+    const handleClickCancel = ()=> {
+        setFirstName(initialFirstName);
+        setLastName(initialLastName);
+        setDisplay(!display)
+    }
+
     const handleSubmitEditProfile = async(event) => {
         event.preventDefault();
-        console.log(initialFirstName + initialLastName)
+        console.log('initiale ' + initialFirstName + initialLastName)
         console.log(regexString(firstName))
         console.log(regexString(lastName))
-        //if(regexString(firstName) && regexString(lastName))
-        //{
+        if(regexString(firstName) && regexString(lastName))
+        {
         console.log('Nom envoyé : '+firstName + lastName)
             
             try {
@@ -39,10 +52,8 @@ export default function EditUser() {
                     console.log(response)
                     
                     if (response.ok) {
-
                         const userProfilUpdate = await response.json()
-                        console.log('->')
-                        console.log(userProfilUpdate)
+
                         const userFirstName = userProfilUpdate.body.firstname
                         const userLastName = userProfilUpdate.body.lastname
                         switch (userProfilUpdate.status) {
@@ -53,9 +64,8 @@ export default function EditUser() {
                                 setErrorMessage("Internal Server Error")
                                 break
                             case 200:
-                                dispatch(editUserName(userFirstName, userLastName))
-                                setFirstName(userFirstName)
-                                setFirstName(userLastName)
+                                dispatch(editUserName(userProfilUpdate.body))
+                                console.log(firstName + lastName)
                                 setDisplay(!display)
                                 break
                             default:
@@ -66,8 +76,8 @@ export default function EditUser() {
             } catch (error) {
                 console.error(error)
             }
-        //}
-        //else setErrorMessage('At least 3 characters')
+        }
+        else setErrorMessage('At least 3 characters')
    }
 
     return <>
@@ -80,15 +90,15 @@ export default function EditUser() {
             <>
                 <h1>Welcome back<br /></h1>
                 <section className="edit-user">      
-                    <form className="edit-user-form">
+                    <form className="edit-user-form" onSubmit={handleSubmitEditProfile}>
                         <div className="edit-user-content">
                             <div className="edit-user-firstname">
-                                <input className="edit-user-input" type="text" id="firstname" defaultValue={initialFirstName} onChange={(event) => setFirstName(event.target.value)}/>
-                                <button className="edit-button-user" onClick={handleSubmitEditProfile}>Save</button>
+                                <input className="edit-user-input" type="text" id="firstname" value={firstName} onChange={(event) => setFirstName(event.target.value)}/>
+                                <button className="edit-button-user" type="submit">Save</button>
                             </div>
                             <div className="edit-user-lastname">
-                                <input className="edit-user-input" type="text" id="lastname" defaultValue={initialLastName} onChange={(event) => setLastName(event.target.value)}/>
-                                <button className="edit-button-user" onClick={()=>setDisplay(!display)}>Annuler</button>
+                                <input className="edit-user-input" type="text" id="lastname" value={lastName} onChange={(event) => setLastName(event.target.value)}/>
+                                <button className="edit-button-user" type="button" onClick={handleClickCancel}>Annuler</button>
                             </div>
                         </div>
                         { errorMessage }
@@ -99,3 +109,14 @@ export default function EditUser() {
     </>
   
 }
+
+/*
+
+4 raisons : 
+utilisation d'un useEffect sur firstname et lastname,
+pb de transmissions d'information avec value de l'input
+pb transmissions d'infos sur le reduceur ( les changement à la fin ca passait pas j'ai pas pensé a chager en objet mais remis le body comme avec l'autre fonction est ca a marché comme au début)
+
+avec ces modifs le comportment est normal 
+
+*/

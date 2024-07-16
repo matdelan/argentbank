@@ -1,7 +1,7 @@
-export const editUserName = (userFirstName, userLastName) => {
+export const editUserName = (body) => {
     return {
         type: 'EDIT_USERNAME',
-        payload: {firstname: userFirstName , lastname: userLastName},
+        payload: body,
     }
 
 }
