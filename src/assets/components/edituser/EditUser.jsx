@@ -26,8 +26,6 @@ export default function EditUser() {
     const EDIT_PROFILE_BASE_URL = `${process.env.REACT_APP_BASE_URL}user/profile`
     const [display, setDisplay] = useState(true)
 
-    console.log(firstName + lastName)
-    console.log('ini : ' + initialFirstName + initialLastName)
     useEffect(() => {
         setFirstName(initialFirstName);
         setLastName(initialLastName);
@@ -53,7 +51,6 @@ export default function EditUser() {
                         },
                         body: JSON.stringify({firstName, lastName})
                     })
-                    console.log(response)
                     
                     if (response.ok) {
                         const userProfilUpdate = await response.json()

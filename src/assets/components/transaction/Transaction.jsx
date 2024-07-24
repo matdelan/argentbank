@@ -1,6 +1,6 @@
 /**
  * Transaction component : Show a transaction
- *
+ * Take content sum and balance of the transaction on parameter
  * @category Components
  * @component
  * @returns { React.Component } A React component

@@ -33,7 +33,6 @@ export default function Profile () {
                     })
                     if (response.ok) {
                         const userData = await response.json()
-                        console.log(userData)
                         setFirstName(userData.body.firstName)
                         setLastName(userData.body.lastName)
                         switch (userData.status) {
@@ -63,7 +62,7 @@ export default function Profile () {
 
     
     return (
-        <div>
+        <>
           {token ? (
             <>
                     <main className="main bg-dark">
@@ -81,6 +80,6 @@ export default function Profile () {
           ) : (
             <p>{errorMessage}</p>
           )}
-        </div>
+        </>
       );
 }
