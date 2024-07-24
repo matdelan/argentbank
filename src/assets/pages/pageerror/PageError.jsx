@@ -3,6 +3,13 @@ import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import './pageError.css'
 
+/**
+ * Error page : Show error message 
+ *
+ * @category Pages
+ * @component
+ * @returns { React.Component } A React component
+ */
 export default function PageError() {
     const error = useRouteError()
     return <>

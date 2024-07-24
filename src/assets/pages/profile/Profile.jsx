@@ -6,6 +6,13 @@ import './profile.css'
 import Transaction from "../../components/transaction/Transaction";
 import EditUser from "../../components/edituser/EditUser";
 
+/**
+ * Profile page : Show user account 
+ *
+ * @category Pages
+ * @component
+ * @returns { React.Component } A React component
+ */
 export default function Profile () {
     const dispatch = useDispatch()
     const token = useSelector((state) => state.login.token)

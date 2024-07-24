@@ -5,6 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { loginSuccess } from '../../redux/actions/loginActions'
 
+/**
+ * Sign-in page : permit to allow user credetial for navigation
+ *
+ * @category Pages
+ * @component
+ * @returns { React.Component } A React component
+ */
 export default function Signin () {
 
     const REACT_LOGIN_BASE_URL=`${process.env.REACT_APP_BASE_URL}user/login`

@@ -5,11 +5,19 @@ import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/actions/loginActions'
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Header component : Show header with connecting status
+ *
+ * @category Components
+ * @component
+ * @returns { React.Component } A React component
+ */
 export default function Header() {
 
     const connect = useSelector((state) => state.login.connect)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const userFirstName = useSelector((state) => state.user.firstname)
 
     const handleClick = () => {
         dispatch(logout())
@@ -30,7 +38,7 @@ export default function Header() {
                 <div className='main-nav'>
                     <a className="main-nav-item" href="./user.html">
                     <i className="fa fa-user-circle"></i>
-                    Tony
+                    {userFirstName}
                     </a>
                     <p className="main-nav-item" onClick={handleClick}>
                     <i className="fa fa-sign-out"></i>

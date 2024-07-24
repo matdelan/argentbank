@@ -1,3 +1,10 @@
+/**
+ * Transaction component : Show a transaction
+ *
+ * @category Components
+ * @component
+ * @returns { React.Component } A React component
+ */
 export default function Transaction ({content, sum, balance}) {
 
     return <>

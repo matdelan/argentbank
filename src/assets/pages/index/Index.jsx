@@ -3,6 +3,13 @@ import iconMoney from '../../img/icon-money.png'
 import iconSecurity from '../../img/icon-security.png'
 import './index.css'
 
+/**
+ * Home page : Show home page
+ *
+ * @category Pages
+ * @component
+ * @returns { React.Component } A React component
+ */
 export default function index() {
 
     return <>

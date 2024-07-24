@@ -5,6 +5,14 @@ import { useNavigate } from 'react-router-dom'
 import './editUser.css'
 import { editUserName } from '../../redux/actions/userEditActions'
 
+
+/**
+ * Edit user component : if user select edit name, he can change firstname and lastname
+ *
+ * @category Components
+ * @component
+ * @returns { React.Component } A React component
+ */
 export default function EditUser() {
     const dispatch = useDispatch()
     const token = useSelector((state) => state.login.token)
@@ -33,13 +41,9 @@ export default function EditUser() {
 
     const handleSubmitEditProfile = async(event) => {
         event.preventDefault();
-        console.log('initiale ' + initialFirstName + initialLastName)
-        console.log(regexString(firstName))
-        console.log(regexString(lastName))
+
         if(regexString(firstName) && regexString(lastName))
         {
-        console.log('Nom envoyé : '+firstName + lastName)
-            
             try {
                     const response = await fetch(EDIT_PROFILE_BASE_URL, {
                         method: "PUT",
@@ -65,7 +69,6 @@ export default function EditUser() {
                                 break
                             case 200:
                                 dispatch(editUserName(userProfilUpdate.body))
-                                console.log(firstName + lastName)
                                 setDisplay(!display)
                                 break
                             default:
@@ -94,11 +97,13 @@ export default function EditUser() {
                         <div className="edit-user-content">
                             <div className="edit-user-firstname">
                                 <input className="edit-user-input" type="text" id="firstname" value={firstName} onChange={(event) => setFirstName(event.target.value)}/>
-                                <button className="edit-button-user" type="submit">Save</button>
+                                <div className='edit-button-format'>
+                                    <button className="edit-button-userfirst edit-button-user" type="submit">Save</button>
+                                </div>
                             </div>
                             <div className="edit-user-lastname">
                                 <input className="edit-user-input" type="text" id="lastname" value={lastName} onChange={(event) => setLastName(event.target.value)}/>
-                                <button className="edit-button-user" type="button" onClick={handleClickCancel}>Annuler</button>
+                                <button className="edit-button-userlast edit-button-user" type="button" onClick={handleClickCancel}>Cancel</button>
                             </div>
                         </div>
                         { errorMessage }

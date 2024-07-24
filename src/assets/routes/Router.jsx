@@ -5,8 +5,14 @@ import Signin from '../pages/signin/Signin'
 import Profile from '../pages/profile/Profile'
 import './routes.css'
 import Layout from '../layout/Layout'
-//import Edit from '../pages/profile/Edit'
 
+/**
+ * Router : page available 
+ *
+ * @category Router
+ * @component
+ * @returns { React.Component } A React component
+ */
 const router = createBrowserRouter([
   {
     path: '/',
@@ -24,11 +30,7 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile/>,
-      }/*,
-      {
-        path: 'profile/edit',
-        element: <Edit/>,
-      }*/
+      }
     ]
   }
 ])
