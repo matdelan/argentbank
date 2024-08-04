@@ -9,7 +9,7 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /user/transactions:
+  /user/{userId}/transactions:
     get:
       security:
         - Bearer: []
@@ -18,6 +18,11 @@ paths:
       summary: Show the last twenty transactions of user
       description: API for get last transactions
       parameters:
+        - name: userId
+          in: path
+          description: ID of the user
+          required: true
+          type: integer
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
@@ -36,7 +41,7 @@ paths:
           description: Transactions not found
         '500':
           description: Internal Server Error
-  /user/transaction:
+  /user/{userId}/transaction:
         post:
             security:
                 - Bearer: []
@@ -45,6 +50,11 @@ paths:
             summary: Add a transaction
             description: API for adding a transaction
             parameters:
+                - name: userId
+                  in: path
+                  description: ID of the user
+                  required: true
+                  type: integer
                 - in: header
                   name: Authorization
                   description: Attach Bearer JWT token
@@ -67,7 +77,7 @@ paths:
                     description: Invalid Fields
                 "500":
                     description: Internal Server Error
-  /user/transaction/{id}:
+  /user/{userId}/transaction/{transactionId}:
     get:
       security:
         - Bearer: []
@@ -76,13 +86,18 @@ paths:
       summary: Return a transaction
       description: API for get a transaction and show it
       parameters:
+        - name: userId
+          in: path
+          description: ID of the user
+          required: true
+          type: integer
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
           type: string
         - in: path
-          name: id
+          name: transactionId
           description: id of transaction
           required: true
           type: string
@@ -99,7 +114,7 @@ paths:
           description: Id unknown
         '500':
           description: Internal Server Error
-    put:
+    patch:
       security:
         - Bearer: []
       tags:
@@ -107,13 +122,18 @@ paths:
       summary: Edit a transaction
       description: API for updating a transaction
       parameters:
+        - name: userId
+          in: path
+          description: ID of the user
+          required: true
+          type: integer      
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
           type: string
         - in: path
-          name: id
+          name: transactionId
           description: id of transaction
           required: true
           type: string
@@ -144,13 +164,18 @@ paths:
       summary: Delete a transaction
       description: API for delete a transaction with id
       parameters:
+        - name: userId
+          in: path
+          description: ID of the user
+          required: true
+          type: integer
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
           type: string
         - in: path
-          name: id
+          name: transactionId
           description: Id of transaction
           required: true
           type: string
