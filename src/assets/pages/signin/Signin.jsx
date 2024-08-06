@@ -16,8 +16,6 @@ export default function Signin () {
 
     const REACT_LOGIN_BASE_URL=`${process.env.REACT_APP_BASE_URL}user/login`
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
     const navigate = useNavigate()
@@ -25,12 +23,15 @@ export default function Signin () {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        const formData = new FormData(event.target)
+        const password = formData.get('passwordInput')
+        const email = formData.get('usernameInput')
         if (!regexEmail(email)) {
-            setErrorMessage("Adresse email incorrecte")
+            setErrorMessage("Invalid E-mail address")
             return
         }
         if (!regexPassword(password)) {
-            setErrorMessage("Mot de passe non conforme")
+            setErrorMessage("Required six characteres")
             return
         }
         setErrorMessage("")
@@ -62,9 +63,12 @@ export default function Signin () {
                         setErrorMessage("An unknown error occurred");
                         break;
                 }
-            } 
+            } else {
+                setErrorMessage("Wrong credential. Try again")
+            }
         } catch (error) {
             console.error(error)
+            setErrorMessage('An unexpected error occurred.')
         }
     }
 
@@ -77,11 +81,11 @@ export default function Signin () {
                     <form onSubmit={handleSubmit}>
                         <div className="input-wrapper">
                             <label>Username</label>
-                            <input type="text" id="username" onChange={(event) => setEmail(event.target.value)}/>
+                            <input type="text" id="username" name="usernameInput"/>
                         </div>
                         <div className="input-wrapper">
                             <label>Password</label>
-                            <input type="password" id="password" onChange={(event) => setPassword(event.target.value)}/>
+                            <input type="password" id="password" name="passwordInput"/>
                         </div>
                         <div className="input-remember">
                             <input type="checkbox" id="remember-me" />

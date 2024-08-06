@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { storeUserProfile } from "../../redux/actions/userActions"
 import React, { useState, useEffect }  from 'react'
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import './profile.css'
 import Transaction from "../../components/transaction/Transaction";
 import EditUser from "../../components/edituser/EditUser";
@@ -16,10 +17,9 @@ import EditUser from "../../components/edituser/EditUser";
 export default function Profile () {
     const dispatch = useDispatch()
     const token = useSelector((state) => state.login.token)
-    const [firstname, setFirstName] = useState(null) 
-    const [lastname, setLastName] = useState(null)
     const PROFILE_BASE_URL = `${process.env.REACT_APP_BASE_URL}user/profile`
     const [errorMessage, setErrorMessage] = useState('Please log in')
+    const navigate = useNavigate()
 
     useEffect(() => {
         const userProfile = async() => {
@@ -33,8 +33,7 @@ export default function Profile () {
                     })
                     if (response.ok) {
                         const userData = await response.json()
-                        setFirstName(userData.body.firstName)
-                        setLastName(userData.body.lastName)
+
                         switch (userData.status) {
                             case 400:
                                 setErrorMessage("Invalid Fiels")
@@ -47,9 +46,12 @@ export default function Profile () {
                                 break
                             default:
                                 setErrorMessage(userData.status + 'Please log in')
+                                navigate('/signin')
                                 break
                         }
-                    } 
+                    } else {
+                        navigate('/signin')
+                    }
                 } catch (error) {
                     console.error(error)
                 }
@@ -57,6 +59,8 @@ export default function Profile () {
 
         if (token) {
             userProfile();
+        } else {
+            navigate('/signin')
         }
     }, [token, dispatch, PROFILE_BASE_URL]);
 
@@ -79,6 +83,7 @@ export default function Profile () {
             </>
           ) : (
             <p>{errorMessage}</p>
+            
           )}
         </>
       );

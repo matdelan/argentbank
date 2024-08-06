@@ -10,7 +10,7 @@
     padding: 1.5rem;
     box-sizing: border-box;
     text-align: left;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
   
   .account-amount {
@@ -75,6 +75,7 @@
   }
 
   .main{
-    padding-bottom: 15rem;
+    padding-bottom: 18rem;
     background-color: #12002b;
+    padding-top: 1.5rem ;
   }

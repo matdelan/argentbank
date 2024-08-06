@@ -34,6 +34,7 @@
   .main-nav-logo-image {
     max-width: 100%;
     width: 200px;
+    cursor: pointer;
   }
 
   .sr-only {

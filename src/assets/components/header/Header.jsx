@@ -3,7 +3,7 @@ import logoArgentBank from '../../img/argentBankLogo.png'
 import { useSelector } from "react-redux"
 import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/actions/loginActions'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 /**
  * Header component : Show header with connecting status
@@ -23,36 +23,34 @@ export default function Header() {
         dispatch(logout())
         navigate('/')
     }
-
+   
     return <nav className="main-nav">
-        <a className="main-nav-logo" href="/">
-        <img
-            className="main-nav-logo-image"
-            src={logoArgentBank}
-            alt="Argent Bank Logo"
-        />
-        <h1 className="sr-only">Argent Bank</h1>
-        </a>
-        <div>
+        <NavLink className="main-nav-logo" to="/">
+            <img
+                className="main-nav-logo-image"
+                src={logoArgentBank}
+                alt="Argent Bank Logo"
+            />
+            <h1 className="sr-only">Argent Bank</h1>
+        </NavLink>
             {connect ? (
-                <div className='main-nav'>
-                    <a className="main-nav-item" href="./user.html">
-                    <i className="fa fa-user-circle"></i>
-                    {userFirstName}
+                <NavLink className="main-nav" to="/profile">
+                    <a className="main-nav-item">
+                        <i className="fa fa-user-circle"></i>
+                        {userFirstName}
                     </a>
-                    <p className="main-nav-item" onClick={handleClick}>
+                    <div className="main-nav-item" onClick={handleClick}>
                     <i className="fa fa-sign-out"></i>
                     Sign Out
-                    </p>
-                
-                </div>
+                    </div>
+                </NavLink>
                 ) : (
-                    <a className="main-nav-item" href="./signin">
+                    <NavLink className="main-nav-item" to="/signin">
                         <i className="fa fa-user-circle"></i>
                         <span>SignIn</span>
-                    </a>
+                    </NavLink>
                 )
             }
-        </div>
+        
     </nav>
 }
