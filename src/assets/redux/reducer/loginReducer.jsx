@@ -14,7 +14,8 @@ export const loginReducer = (state = initialState, action)=> {
         case 'LOGIN_FAIL': 
             return {
                 ...state,
-                connect: false
+                connect: false,
+                token: null
             }
         case 'LOGOUT': {
             return initialState
